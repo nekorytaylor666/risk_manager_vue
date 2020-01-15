@@ -1,5 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+	<StepForm></StepForm>
 </template>
+
+<script>
+import StepForm from '@/components/StepForm.vue';
+export default {
+	components: {
+		StepForm,
+	},
+};
+</script>
