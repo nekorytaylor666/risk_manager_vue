@@ -19,20 +19,12 @@
 		<v-select
 			label="Category"
 			v-model="form.category"
-			:items="form.items"
+			:items="items"
 			:error-messages="categoryErrors"
 			@change="$v.form.category.$touch()"
 			@blur="$v.form.category.$touch()"
 			required
 		></v-select>
-		<v-checkbox
-			label="Do you agree?"
-			v-model="form.checkbox"
-			:error-messages="checkboxErrors"
-			@change="$v.form.checkbox.$touch()"
-			@blur="$v.form.checkbox.$touch()"
-			required
-		></v-checkbox>
 
 		<v-btn @click="submit">submit</v-btn>
 		<v-btn @click="clear">clear</v-btn>
@@ -40,7 +32,7 @@
 </template>
 
 <script>
-const { required, email, sameAs } = require('vuelidate/lib/validators');
+const { required, email } = require('vuelidate/lib/validators');
 
 export default {
 	validations: {
@@ -48,7 +40,6 @@ export default {
 			name: { required },
 			email: { required, email },
 			category: { required },
-			checkbox: { sameAs: sameAs(() => true) },
 		},
 	},
 	data: () => ({
@@ -56,9 +47,9 @@ export default {
 			name: '',
 			email: '',
 			category: null,
-			items: ['Tech', 'Social', 'Movies'],
-			checkbox: false,
 		},
+		items: ['Tech', 'Social', 'Movies'],
+		checkbox: false,
 	}),
 	computed: {
 		checkboxErrors() {
@@ -93,7 +84,7 @@ export default {
 		submit() {
 			this.$v.$touch();
 			if (!this.$v.$invalid) {
-				this.$emit('projectCreated', this.form);
+				this.$emit('projectInfoSubmited', this.form);
 			}
 		},
 		clear() {
