@@ -23,7 +23,7 @@
 
 		<v-app-bar app color="indigo" dark>
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-			<v-toolbar-title>Risk Manager</v-toolbar-title>
+			<v-toolbar-title>{{ project }}</v-toolbar-title>
 		</v-app-bar>
 
 		<v-content>
@@ -42,6 +42,10 @@ export default {
 	},
 	data: () => ({
 		drawer: null,
+		project: null,
 	}),
+	mounted() {
+		this.project = this.$store.state.projectStore.currentProject;
+	},
 };
 </script>

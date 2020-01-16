@@ -1,16 +1,15 @@
 <template>
 	<v-stepper v-model="e1">
 		<template>
-			<v-progress-linear v-if="sending" indeterminate></v-progress-linear>
 			<v-stepper-header>
 				<template v-for="n in steps">
-					<v-stepper-step :key="`${n}-step`" :complete="e1 > n" :step="n" :editable="false">
-						Step {{ n }}
-					</v-stepper-step>
-
+					<v-stepper-step :key="`${n}-step`" :complete="e1 > n" :step="n" :editable="false"
+						>Step {{ n }}</v-stepper-step
+					>
 					<v-divider v-if="n !== steps" :key="n"></v-divider>
 				</template>
 			</v-stepper-header>
+			<v-progress-linear v-if="sending" indeterminate></v-progress-linear>
 
 			<v-stepper-items>
 				<v-stepper-content :step="1">
@@ -28,7 +27,7 @@
 import ProjectInfoForm from '@/components/ProjectInfoForm.vue';
 import FileInput from '@/components/FileInput.vue';
 import { storage } from '@/firebase';
-import { db } from '@/firebase';
+import { mapActions } from 'vuex';
 
 export default {
 	data() {
@@ -46,25 +45,23 @@ export default {
 		FileInput,
 	},
 	methods: {
+		...mapActions([
+			'addProject', //also supports payload `this.nameOfAction(amount)`
+		]),
 		async nextStep(n) {
 			if (n === this.steps) {
-				this.sending = true;
-				const downloadUrl = await this.uploadFile(this.formData);
-				this.formData.fileUrls.push(downloadUrl);
-				await this.uploadData(this.formData);
-				this.sending = false;
+				await this.submitFormDataToFirebase();
 				this.$router.push({ name: 'home' });
 			} else {
 				this.e1 = n + 1;
 			}
 		},
-		uploadData(projectData) {
-			return db.collection('projects').add({
-				name: projectData.name,
-				category: projectData.category,
-				email: projectData.email,
-				files: projectData.fileUrls,
-			});
+		async submitFormDataToFirebase() {
+			this.sending = true;
+			const downloadUrl = await this.uploadFile(this.formData);
+			this.formData.fileUrls.push(downloadUrl);
+			await this.addProject(this.formData);
+			this.sending = false;
 		},
 		async uploadFile(projectData) {
 			await storage.ref(projectData.file.name).put(projectData.file);

@@ -1,9 +1,20 @@
 <template>
-	<h2>Home</h2>
+	<ScheduleChart></ScheduleChart>
 </template>
 
+<style></style>
+
 <script>
+import ScheduleChart from '@/components/ScheduleChart.vue';
 export default {
-	name: 'home',
+	components: {
+		ScheduleChart,
+	},
 };
 </script>
+
+<style scoped>
+.GanttElastic {
+	font-family: 'Roboto', Tahoma, Geneva, Verdana, sans-serif;
+}
+</style>
