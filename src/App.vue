@@ -44,7 +44,7 @@ export default {
 		drawer: null,
 		project: null,
 	}),
-	mounted() {
+	created() {
 		this.project = this.$store.state.projectStore.currentProject;
 	},
 };

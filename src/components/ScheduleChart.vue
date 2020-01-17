@@ -6,15 +6,13 @@
 			@tasks-changed="tasksUpdate"
 			@options-changed="optionsUpdate"
 			@dynamic-style-changed="styleUpdate"
-		>
-		</gantt-elastic>
+		></gantt-elastic>
 	</div>
 </template>
 
 <script>
 import GanttElastic from 'gantt-elastic';
 import { ganttConfig } from '../config/GanttChart.config';
-console.log(ganttConfig.tasks);
 export default {
 	name: 'Gantt',
 	components: {
@@ -42,4 +40,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+[class^='gantt-elastic'] {
+	box-sizing: border-box;
+	font-family: 'Roboto' !important;
+}
+
+.gantt-elastic__task-list-item-value-wrapper:hover {
+	.gantt-elastic__task-list-item-value {
+		padding: 1rem 0 !important;
+		white-space: initial !important;
+	}
+}
+</style>

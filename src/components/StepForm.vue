@@ -3,9 +3,7 @@
 		<template>
 			<v-stepper-header>
 				<template v-for="n in steps">
-					<v-stepper-step :key="`${n}-step`" :complete="e1 > n" :step="n" :editable="false"
-						>Step {{ n }}</v-stepper-step
-					>
+					<v-stepper-step :key="`${n}-step`" :complete="e1 > n" :step="n" :editable="false">Step {{ n }}</v-stepper-step>
 					<v-divider v-if="n !== steps" :key="n"></v-divider>
 				</template>
 			</v-stepper-header>
@@ -45,9 +43,7 @@ export default {
 		FileInput,
 	},
 	methods: {
-		...mapActions([
-			'addProject', //also supports payload `this.nameOfAction(amount)`
-		]),
+		...mapActions(['addProject']),
 		async nextStep(n) {
 			if (n === this.steps) {
 				await this.submitFormDataToFirebase();
@@ -57,13 +53,16 @@ export default {
 			}
 		},
 		async submitFormDataToFirebase() {
+			//for loading bar
 			this.sending = true;
-			const downloadUrl = await this.uploadFile(this.formData);
+			//download url is the thing that you can reference to download file from firestorage
+			const downloadUrl = await this.uploadFileGetUrl(this.formData);
 			this.formData.fileUrls.push(downloadUrl);
+			this.formData.createDate = new Date(Date.now());
 			await this.addProject(this.formData);
 			this.sending = false;
 		},
-		async uploadFile(projectData) {
+		async uploadFileGetUrl(projectData) {
 			await storage.ref(projectData.file.name).put(projectData.file);
 			const url = await storage
 				.ref()
@@ -72,9 +71,9 @@ export default {
 			return url;
 		},
 		confirmStep(event, current) {
+			//merging form information with hole step form data
 			const data = event;
 			this.formData = { ...this.formData, ...data };
-			console.log(this.formData);
 			this.nextStep(current);
 		},
 	},

@@ -9,6 +9,10 @@ function getDate(hours) {
 	return new Date(timeStamp + hours * 60 * 60 * 1000).getTime();
 }
 
+function getDuration(days) {
+	return days * 24 * 60 * 60 * 1000;
+}
+
 const stages = [
 	'Одобрение или отказ Правлением АО «СПК Астана» в рассмотрении заявки и анкеты на 1-й этапе рассмотрения инвест. проектов',
 	'Корректировка плана детальной планировки;( В случае необходимости корректировки)',
@@ -30,7 +34,7 @@ export const ganttConfig = {
 			label: stages[0],
 			user: '<a href="https://www.google.com/search?q=John+Doe" target="_blank" style="color:#0077c0;">John Doe</a>',
 			start: getDate(-24 * 5),
-			duration: 3 * 24 * 60 * 60 * 1000,
+			duration: getDuration(3),
 			percent: 85,
 			type: 'task',
 			//collapsed: true,
@@ -41,7 +45,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Peter+Parker" target="_blank" style="color:#0077c0;">Peter Parker</a>',
 			start: getDate(-24 * 4),
-			duration: 4 * 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 50,
 			type: 'milestone',
 			style: {
@@ -57,7 +61,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=John+Wayne" target="_blank" style="color:#0077c0;">John Wayne</a>',
 			start: getDate(-24 * 3),
-			duration: 2 * 24 * 60 * 60 * 1000,
+			duration: getDuration(5),
 			percent: 100,
 			type: 'task',
 		},
@@ -67,7 +71,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Clark+Kent" target="_blank" style="color:#0077c0;">Clark Kent</a>',
 			start: getDate(-24 * 2),
-			duration: 2 * 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 50,
 			type: 'task',
 		},
@@ -77,7 +81,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Austin+Powers" target="_blank" style="color:#0077c0;">Austin Powers</a>',
 			start: getDate(0),
-			duration: 2 * 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 10,
 			type: 'milestone',
 			style: {
@@ -93,7 +97,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Mario+Bros" target="_blank" style="color:#0077c0;">Mario Bros</a>',
 			start: getDate(24),
-			duration: 1 * 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 50,
 			type: 'task',
 			style: {
@@ -109,7 +113,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Knight+Rider" target="_blank" style="color:#0077c0;">Knight Rider</a>',
 			start: getDate(24 * 2),
-			duration: 4 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 20,
 			type: 'task',
 		},
@@ -119,7 +123,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Johhny+Bravo" target="_blank" style="color:#0077c0;">Johhny Bravo</a>',
 			start: getDate(24 * 3),
-			duration: 1 * 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 0,
 			type: 'task',
 		},
@@ -129,7 +133,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Dexter\'s+Laboratory" target="_blank" style="color:#0077c0;">Dexter\'s Laboratory</a>',
 			start: getDate(24 * 4),
-			duration: 4 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 20,
 			type: 'task',
 			style: {
@@ -145,7 +149,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Johnattan+Owens" target="_blank" style="color:#0077c0;">Johnattan Owens</a>',
 			start: getDate(24 * 5),
-			duration: 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 0,
 			type: 'task',
 		},
@@ -155,7 +159,7 @@ export const ganttConfig = {
 			user:
 				'<a href="https://www.google.com/search?q=Johnattan+Owens" target="_blank" style="color:#0077c0;">Johnattan Owens</a>',
 			start: getDate(24 * 6),
-			duration: 24 * 60 * 60 * 1000,
+			duration: getDuration(4),
 			percent: 0,
 			type: 'task',
 		},
@@ -173,22 +177,18 @@ export const ganttConfig = {
 		row: {
 			height: 40,
 		},
+
 		calendar: {
 			hour: {
 				display: false,
 			},
 		},
 		chart: {
-			progress: {
-				bar: false,
-			},
 			expander: {
 				display: true,
 			},
-			time: {
-				zoom: 22,
-			},
 		},
+		// var x = document.getElementsByClassName("example");
 		taskList: {
 			expander: {
 				straight: false,
@@ -204,38 +204,9 @@ export const ganttConfig = {
 				},
 				{
 					id: 3,
-					label: 'Assigned to',
-					value: 'user',
-					width: 130,
-					html: true,
-				},
-				{
-					id: 3,
 					label: 'Start',
 					value: task => dayjs(task.start).format('YYYY-MM-DD'),
 					width: 78,
-				},
-				{
-					id: 4,
-					label: 'Type',
-					value: 'type',
-					width: 68,
-				},
-				{
-					id: 5,
-					label: '%',
-					value: 'progress',
-					width: 35,
-					style: {
-						'task-list-header-label': {
-							'text-align': 'center',
-							width: '100%',
-						},
-						'task-list-item-value-container': {
-							'text-align': 'center',
-							width: '100%',
-						},
-					},
 				},
 			],
 		},
@@ -263,5 +234,6 @@ export const ganttConfig = {
 			'Before/After': 'Expand',
 			'Display task list': 'Task list',
 		},
+		actions: {},
 	},
 };

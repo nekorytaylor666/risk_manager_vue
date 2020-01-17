@@ -32,6 +32,7 @@ export default {
 	computed: {
 		fileErrors() {
 			const errors = [];
+			//if form doesnt have validation errors we return empty array or we return errors
 			if (!this.$v.form.file.$dirty) return errors;
 			!this.$v.form.file.required && errors.push('You must add file!');
 			return errors;
