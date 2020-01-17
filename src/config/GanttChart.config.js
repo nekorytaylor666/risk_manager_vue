@@ -196,7 +196,7 @@ export const ganttConfig = {
 			columns: [
 				{
 					id: 2,
-					label: 'Description',
+					label: 'Описание',
 					value: 'label',
 					width: 200,
 					expander: true,
@@ -204,7 +204,7 @@ export const ganttConfig = {
 				},
 				{
 					id: 3,
-					label: 'Start',
+					label: 'Начало',
 					value: task => dayjs(task.start).format('YYYY-MM-DD'),
 					width: 78,
 				},

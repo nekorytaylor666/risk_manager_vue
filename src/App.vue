@@ -10,18 +10,26 @@
 						<v-list-item-title>Home</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
-				<v-list-item to="/about" link>
+				<v-list-item to="/newproject" link>
 					<v-list-item-action>
-						<v-icon>mdi-contact-mail</v-icon>
+						<v-icon>mdi-briefcase-plus</v-icon>
 					</v-list-item-action>
 					<v-list-item-content>
 						<v-list-item-title>New project</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
+				<v-list-item to="/schedule" link>
+					<v-list-item-action>
+						<v-icon>mdi-chart-gantt</v-icon>
+					</v-list-item-action>
+					<v-list-item-content>
+						<v-list-item-title>Schedule</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
 
-		<v-app-bar app color="indigo" dark>
+		<v-app-bar app color="primary" dark elevation="0">
 			<v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 			<v-toolbar-title>{{ project }}</v-toolbar-title>
 		</v-app-bar>
@@ -29,7 +37,7 @@
 		<v-content>
 			<router-view></router-view>
 		</v-content>
-		<v-footer color="indigo" app>
+		<v-footer color="primary" app>
 			<span class="white--text">&copy; 2019</span>
 		</v-footer>
 	</v-app>

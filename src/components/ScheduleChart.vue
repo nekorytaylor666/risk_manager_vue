@@ -52,4 +52,7 @@ export default {
 		white-space: initial !important;
 	}
 }
+.gantt-elastic__task-list-header-label {
+	font-weight: bold;
+}
 </style>

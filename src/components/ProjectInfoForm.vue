@@ -26,7 +26,7 @@
 			required
 		></v-select>
 
-		<v-btn @click="submit">submit</v-btn>
+		<v-btn @click="submit" color="accent">submit</v-btn>
 		<v-btn @click="clear">clear</v-btn>
 	</form>
 </template>
