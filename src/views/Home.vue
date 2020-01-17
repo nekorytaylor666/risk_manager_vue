@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h1>Home</h1>
+    <Project></Project>
   </div>
 </template>
 
 <style></style>
 
 <script>
+import Project from "@/components/Project.vue";
 export default {
-  components: {}
+  components: {
+    Project
+  }
 };
 </script>
