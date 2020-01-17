@@ -1,14 +1,14 @@
 <template>
-	<ScheduleChart></ScheduleChart>
+  <ScheduleChart></ScheduleChart>
 </template>
 
 <style></style>
 
 <script>
-import ScheduleChart from '@/components/ScheduleChart.vue';
+import ScheduleChart from "@/components/ScheduleChart.vue";
 export default {
-	components: {
-		ScheduleChart,
-	},
+  components: {
+    ScheduleChart
+  }
 };
 </script>

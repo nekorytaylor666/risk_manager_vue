@@ -1,12 +1,12 @@
 <template>
-	<StepForm></StepForm>
+  <StepForm></StepForm>
 </template>
 
 <script>
-import StepForm from '@/components/StepForm.vue';
+import StepForm from "@/components/StepForm.vue";
 export default {
-	components: {
-		StepForm,
-	},
+  components: {
+    StepForm
+  }
 };
 </script>

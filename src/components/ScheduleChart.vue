@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<gantt-elastic
+		<GanttElastic
 			:options="options"
 			:tasks="tasks"
 			@tasks-changed="tasksUpdate"
 			@options-changed="optionsUpdate"
 			@dynamic-style-changed="styleUpdate"
-		></gantt-elastic>
+		></GanttElastic>
 	</div>
 </template>
 
